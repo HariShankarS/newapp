@@ -1,0 +1,86 @@
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap-material-design/";
+@import "ripples";
+
+body {
+  background-color: #F2F2F2;
+}
+
+
+.container-fluid, .registration, .overlay, .col-md-6, .index {
+  padding-left: 0px! important;
+  padding-right: 0px! important;
+}
+h3 {
+  font-family: Cherry Cream Soda;
+}
+.dropdown-menu.pull-left {
+  left: 0;
+}
+
+._content {
+  word-wrap: break-word;
+}
+.love {
+  color: red;
+  font-size: 25px! important;
+}
+.user-writing, h2, h1, h4, h6, .post-text, .user-name {
+  font-family: Sniglet !important; 
+}
+.user-name {
+  color: #0080FF;
+}
+.comment {
+  font-family: 'Josefin Sans', sans-serif;
+}
+h2,h5,h1 {
+  text-align: center;
+}
+.post-head, .post-action {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.time {
+  cursor:pointer;
+}
+
+#comment-button, .post-action a, .post-head a {
+  outline: 0! important;  
+}
+
+.row {
+  margin-top: 10px! important;
+  margin-bottom: 10px! important;  
+  line-height: 150%;
+}
+
+.post-head a{ 
+  text-decoration: none !important;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+.post-action .more_horiz {
+  padding-top: 15px;
+  padding-right: 15px;  
+  color: black;
+}

@@ -1,0 +1,5 @@
+$('#post_' + <%= @post.id %> + ' #comment-section').html("<%=j render partial: "comments/comments", locals: {post: @post} %>");
+$('#post_' + <%= @post.id %> + ' #comment-count').html("<%=j render partial: "comments/comment_count", locals: {post: @post, comments: @comments} %>");
+$('[data-toggle="tooltip"]').tooltip();
+
+

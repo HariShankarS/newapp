@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Newapp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <%= csrf_meta_tags %>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Sniglet" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Cherry+Cream+Soda"/>  
+    <link rel='stylesheet' type='text/css' href="//fonts.googleapis.com/css?family=Josefin+Sans&subset=latin,latin-ext"/>
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Jura'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.5/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.5/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.5/js/froala_editor.pkgd.min.js"></script>
+    <script> $(function() { $('.fr-view').froalaEditor() }); </script>
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-info">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "Timeline", root_path, class:"navbar-brand" %>
+      </div>
+      <div class="navbar-collapse collapse navbar-inverse-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %>
+              <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <% if user_signed_in? %>
+                <li><%= link_to 'New Post', new_post_path %></li>
+                <li><%= link_to "Account Update",edit_user_registration_path %></li>
+                <li><%= link_to "Sign Out",destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Sign In",new_user_session_path %></li>
+                <li><%= link_to "Sign Up",new_user_registration_path %></li>
+              <% end -%>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <% if flash_messages.present? %>
+    <div class="col-md-4 col-md-offset-4">
+      <br><%= flash_messages %>
+    </div>
+  <% end -%>
+
+  <div class="container-fluid">
+    <%= yield %>
+  </div>
+
+</body>
+</html>

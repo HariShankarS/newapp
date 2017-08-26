@@ -1,0 +1,3 @@
+$('span#comment_<%= params[:id] %>').fadeOut();
+$('#post_' + <%= @post.id %> + ' #comment-count').html("<%=j render partial: "comments/comment_count", locals: {post: @post, comments: @comments} %>");
+$('[data-toggle="tooltip"]').tooltip();

@@ -1,0 +1,5 @@
+$('.like_post').bind('ajax:success', function(){
+  $(this).closest('.like_post').hide();
+  $(this).closest('.votes').html('<%= link_to dislike_post_path(@post), method: :get, remote: true, class: "dislike_post" do %><i class="material-icons love">favorite</i><% end %>(<%= @post.get_upvotes.size %>)');
+  $('[data-toggle="tooltip"]').tooltip();
+});

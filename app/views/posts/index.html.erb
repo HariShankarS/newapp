@@ -1,0 +1,77 @@
+<div class="container index">
+  <% @posts.each do |post| %>
+    <span id="post_<%= post.id %>">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="well well-sm clearfix post">
+              <% if post.mentions?(current_user) %>
+                <div class="alert alert-dismissible alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <h4 style="text-align:center;">You are mentioned in this post  </h4>
+                </div>
+              <% end -%>
+              <h4></h4>
+              <div class="post-head">
+                <h3>
+                  <span class="user-name">
+                    <%= post.user.name %>
+                  </span>
+                  <span class="pull-right">
+                    <h6><%= post.updated_at.strftime("%d %b %Y %l:%M %p") %></h6>
+                  </span>
+                </h3><br>
+                <div class="_content">
+                  <h4 class="post-text"><%= post.message.html_safe %></h4>
+                </div><br>
+              </div>
+              <% if user_signed_in? %>
+                <div class="post-action">
+                  <div class="row">
+                    <span class="votes">
+                      <% if  current_user.voted_up_on? post %>                         
+                        <%= link_to dislike_post_path(post), method: :get, remote: true, class: "dislike_post" do %>
+                          <i class="material-icons love">favorite</i>
+                        <% end %>
+                        <%= post.get_upvotes.size %>
+                      <% else %>
+                        <%= link_to like_post_path(post), method: :get , remote: true, class: "like_post" do%>
+                          <i class="material-icons love">favorite_border</i>
+                        <% end %>
+                        <%= post.get_upvotes.size %>
+                      <% end %>
+                    </span>
+                    <span id="comment-count"> 
+                      <%= render partial: "comments/comment_count", locals: {post: post} %>       
+                    </span>
+                    <% if post.user == current_user %>
+                      <ul style="list-style-type:none" class="pull-right"> 
+                        <li class="dropdown">
+                          <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="material-icons more_horiz">more_horiz</i>
+                          </a>
+                          <h6 class="dropdown-menu dropdown-menu-right">                         
+                            <li><%= link_to 'Edit', edit_post_path(post) %></li>
+                            <li><%= link_to 'Delete', post, method: :delete, remote: true, class: "delete_post", data: { confirm: 'Are you sure?' } %></li>
+                          </h6>
+                        </li>
+                      </ul>
+                    <% end -%>
+                  </div>
+                  <div id="comment-section" class="collapse"> 
+                    <%= render partial: "comments/comments", locals: {post: post} %>  
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </span>
+  <% end %>
+  <div class="col-md-4 col-md-offset-4">
+    <%= will_paginate @posts,renderer: BootstrapPagination::Rails, previous_label: "Newer", next_label: "Older", inner_window: 1, outer_window: 0 %>
+  </div>  
+</div>   
+<br />
+<%= link_to 'New Post', new_post_path %>

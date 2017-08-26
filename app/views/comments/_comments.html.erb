@@ -1,0 +1,4 @@
+<% post.comments.each do |comment| %>
+  <%= render partial: "comments/comment", locals: {post: post, comment: comment} %>
+<% end %>
+<%= render partial: "comments/form", locals: {post: post} %>

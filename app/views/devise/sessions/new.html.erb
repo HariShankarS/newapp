@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="well well-sm">
+          <div class="panel-heading">
+            <legend class="text-center"  <h3><%= t('.sign_in', :default => "Sign in") %></h3></legend>
+          </div>
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, autofocus: true, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password %>
+                <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+              </div>
+              <% if devise_mapping.rememberable? %>
+                <div class="togglebutton">
+                  <%= f.label :remember_me do %>
+                    <%= f.check_box :remember_me %>remember me
+                  <% end %>
+                </div>
+              <% end %>
+              <%= f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-primary" %>
+            <% end %>
+          </div>
+          <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>
+

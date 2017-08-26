@@ -1,0 +1,25 @@
+<div class="comment clearfix">
+  <span id="comment_<%= comment.id %>">
+    <div class="_content">
+      <br />
+      <span class="user-name"> 
+        <strong><%= comment.user.name %></strong>:
+      </span>
+      <span class="comment">
+        <%= comment.comment_text %>
+      </span>
+      <h6>
+        <%= comment.created_at.strftime("%d %b %Y %l:%M %p") %>
+        <% if current_user == comment.user %>
+          &nbsp; &nbsp;&nbsp; &nbsp;
+          <%= link_to "Delete", [comment.post, comment], method: :delete, remote: true, class: "button ", data: {confirm: "Are yo sure?"} %>
+        <% end %>
+      </h6>
+    </div>
+  </span>
+</div>
+
+
+
+
+
