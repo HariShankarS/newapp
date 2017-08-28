@@ -33,12 +33,12 @@
                         <%= link_to dislike_post_path(post), method: :get, remote: true, class: "dislike_post" do %>
                           <i class="material-icons love">favorite</i>
                         <% end %>
-                        <%= post.get_upvotes.size %>
+                        (<%= post.get_upvotes.size %>)
                       <% else %>
                         <%= link_to like_post_path(post), method: :get , remote: true, class: "like_post" do%>
                           <i class="material-icons love">favorite_border</i>
                         <% end %>
-                        <%= post.get_upvotes.size %>
+                        (<%= post.get_upvotes.size %>)
                       <% end %>
                     </span>
                     <span id="comment-count"> 

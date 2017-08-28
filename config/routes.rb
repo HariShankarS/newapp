@@ -5,7 +5,12 @@ Rails.application.routes.draw do
       get "like" => "posts#upvote"
       get "dislike" => "posts#downvote"
     end
-    resources :comments
+    resources :comments do
+      member do
+        get "like" => "comments#upvote"
+        get "dislike" => "comments#downvote"
+      end
+    end
   end
   root to: "posts#index"
   # The priority is based upon order of creation: first created -> highest priority.

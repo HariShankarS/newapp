@@ -60,16 +60,16 @@ class PostsController < ApplicationController
   def upvote
     @post.upvote_by(current_user)
     respond_to do |format|
-        format.html { redirect_to :back }
-        format.js { render :layout => false }
+      format.html { redirect_to :back }
+      format.js { render :layout => false }
     end  
   end
 
   def downvote
     @post.downvote_by(current_user)
     respond_to do |format|
-        format.html { redirect_to :back }
-        format.js { render :layout => false }
+      format.html { redirect_to :back }
+      format.js { render :layout => false }
     end      
   end
 

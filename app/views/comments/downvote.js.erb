@@ -1,0 +1,5 @@
+$('.dislike_comment').bind('ajax:success', function(){
+  $(this).closest('.dislike_comment').hide();
+  $(this).closest('.comment_votes').html('<%= link_to like_post_comment_path(@comment.post, @comment), method: :get, remote: true, class: "like_comment" do %><i class="material-icons comment_love">favorite_border</i><% end %>(<%= @comment.get_upvotes.size %>)');
+  $('[data-toggle="tooltip"]').tooltip();
+});

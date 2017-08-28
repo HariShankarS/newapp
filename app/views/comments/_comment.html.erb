@@ -9,17 +9,29 @@
         <%= comment.comment_text %>
       </span>
       <h6>
-        <%= comment.created_at.strftime("%d %b %Y %l:%M %p") %>
+        <span class="comment_votes">
+          <% if current_user.voted_up_on? comment %>
+            <%= link_to  dislike_post_comment_path(comment.post,comment), class: "dislike_comment", method: :get, remote: true  do %>
+              <i class="material-icons comment_love">favorite</i>
+            <% end -%>
+            (<%= comment.get_upvotes.size %>)
+          <% else %>
+            <%= link_to like_post_comment_path(comment.post,comment), class: "like_comment", method: :get, remote: true do %>
+              <i class="material-icons comment_love">favorite_border</i>
+            <% end -%>
+            (<%= comment.get_upvotes.size %>)
+          <% end -%>
+        </span>
         <% if current_user == comment.user %>
           &nbsp; &nbsp;&nbsp; &nbsp;
           <%= link_to "Delete", [comment.post, comment], method: :delete, remote: true, class: "button ", data: {confirm: "Are yo sure?"} %>
         <% end %>
+          &nbsp; &nbsp;&nbsp; &nbsp;
+        <%= comment.created_at.strftime("%d %b %Y %l:%M %p") %>
       </h6>
     </div>
   </span>
 </div>
-
-
 
 
 
